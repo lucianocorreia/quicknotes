@@ -1,8 +1,5 @@
 # Makefile
 
-# Variables
-APP_NAME := main
-
 # Targets
 .PHONY: run
 run:
@@ -12,12 +9,12 @@ run:
 .PHONY: build
 build:
 	@echo "Building the Go application..."
-	go build -o ./tmp/$(APP_NAME) ./cmd/http/*.*
+	go build -o ./tmp/main ./cmd/http/*.*
 
 .PHONY: clean
 clean:
 	@echo "Cleaning up..."
-	rm -f $(APP_NAME)
+	rm -f main
 
 .PHONY: test
 test:
