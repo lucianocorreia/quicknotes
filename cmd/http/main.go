@@ -3,11 +3,15 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log/slog"
 	"net/http"
+	"os"
 )
 
 func main() {
 	config := loadConfig()
+
+	slog.SetDefault(newLogger(os.Stdout, config.GetLevelLog()))
 
 	mux := http.NewServeMux()
 
@@ -19,7 +23,7 @@ func main() {
 	mux.HandleFunc("/note/new", notesNew)
 	mux.HandleFunc("/note/create", notesCreate)
 
-	fmt.Printf("Starting server on port %s\n", config.ServerPort)
+	slog.Info(fmt.Sprintf("Starting server on port %s", config.ServerPort))
 	err := http.ListenAndServe(fmt.Sprintf(":%s", config.ServerPort), mux)
 	if err != nil {
 		panic(err)
