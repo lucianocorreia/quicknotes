@@ -11,9 +11,9 @@ import (
 )
 
 type Config struct {
-	ServerPort string `env:"SERVER_PORT,5000"`
-	DBPassword string `env:"DB_PASSWORD,required"`
-	LevelLog   string `env:"LEVEL_LOG,info"`
+	ServerPort  string `env:"SERVER_PORT,5000"`
+	DatabaseURL string `env:"DATABASE_URL,required"`
+	LevelLog    string `env:"LEVEL_LOG,info"`
 }
 
 func (c Config) GetLevelLog() slog.Level {
